@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="WEB-INF/templates/master.xhtml">
+
+    <ui:define name="head" class="header">
+        <h:outputStylesheet library="css" name="main.css"/>
+    </ui:define>
+
+    <ui:define name="main">
+        <main class="container">
+            <div>
+                <section>
+                    <ui:include src="templates/canvas.html"/>
+                </section>
+                <section>
+                    <h:form id="newPointForm">
+                        <div>
+                            <h:outputLabel value="X"/>
+                            <ul>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button1"
+                                                   type="button" value="-3"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button2"
+                                                   type="button" value="-2"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button3"
+                                                   type="button" value="-1"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button4"
+                                                   type="button" value="0"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button5"
+                                                   type="button" value="1"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button6"
+                                                   type="button" value="2"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button7"
+                                                   type="button" value="3"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button8"
+                                                   type="button" value="4"/>
+                                </li>
+                                <li>
+                                    <p:commandLink styleClass="input_form_button_x" id="x-button9"
+                                                   type="button" value="5"/>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h:panelGroup styleClass="input_form_hidden_x">
+                            <h:inputHidden value="#{exampleBean.newEntry.x}">
+                            </h:inputHidden>
+                        </h:panelGroup>
+
+                        <div>
+                            <h:outputLabel styleClass="input-form_label_y" for="y" value="Y"/>
+                            <h:inputText styleClass="input-form_text input-form_text_y" id="y"
+                                         value="#{exampleBean.newEntry.y}">
+                            </h:inputText>
+                        </div>
+
+                        <div>
+                            <h:outputLabel styleClass="input-form_label input-form_label_r" value="R"/>
+                            <ul>
+                                <li>
+                                    <h:commandButton styleClass="input_form_button_r" id="r-button1"
+                                                     type="button" value="1"/>
+                                </li>
+                                <li>
+                                    <h:commandButton styleClass="input_form_button_r" id="r-button2"
+                                                     type="button" value="2"/>
+                                </li>
+                                <li>
+                                    <h:commandButton styleClass="input_form_button_r" id="r-button3"
+                                                     type="button" value="3"/>
+                                </li>
+
+                                <li>
+                                    <h:commandButton styleClass="input_form_button_r" id="r-button4"
+                                                     type="button" value="4"/>
+                                </li>
+                                <li>
+                                    <h:commandButton styleClass="input_form_button_r" id="r-button5"
+                                                     type="button" value="5"/>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h:panelGroup styleClass="input_form_hidden_r">
+                            <h:inputHidden value="#{exampleBean.newEntry.r}">
+                            </h:inputHidden>
+                        </h:panelGroup>
+
+
+                        <div class="input_form_buttons_container">
+                            <h:commandButton value="Отправить" styleClass="input_form_control_buttons_button_submit"
+                                             action="#{exampleBean.addEntry()}">
+                                <f:ajax execute="newPointForm" render="pointTable"/>
+                            </h:commandButton>
+                            <h:commandButton
+                                    styleClass="input_form_control_buttons_button_clear"
+                                    value="Очистить" action="#{exampleBean.addEntry}" immediate="true"/>
+                        </div>
+                    </h:form>
+                </section>
+            </div>
+
+            <section>
+                <div class="result-table_container">
+                    <h:panelGroup id="pointTable">
+                        <h:dataTable styleClass="result_table" value="#{exampleBean.entries}" var="entry">
+                            <h:column headerClass="variables">
+                                <f:facet name="header">X</f:facet>
+                                <h:outputText value="#{entry.x}"/>
+                            </h:column>
+                            <h:column headerClass="variables">
+                                <f:facet name="header">Y</f:facet>
+                                <h:outputText value="#{entry.y}"/>
+                            </h:column>
+                            <h:column headerClass="variables">
+                                <f:facet name="header">R</f:facet>
+                                <h:outputText value="#{entry.r}"/>
+                            </h:column>
+                            <h:column headerClass="variables">
+                                <f:facet name="header">Результат</f:facet>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </div>
+            </section>
+        </main>
+
+        <h:outputScript library="js" name="main.js"/>
+        <h:outputScript library="js" name="canvas.js"/>
+    </ui:define>
+
+</ui:composition>
+
+</html>
