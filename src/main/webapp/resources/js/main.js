@@ -7,6 +7,12 @@ $('.input_form_button_r').on('click', function (event) {
     $('.input_form_button_r').not(this).removeClass('button_r_clicked');
     $('.input_form_hidden_r input[type=hidden]').val(rval);
 });
+
+function changeX(link, val) {
+    xval = val;
+    $('.input_form_hidden_x input[type=hidden]').val(xval);
+}
+
 let wrongFieldX = document.getElementById("wrong_field_X");
 let wrongFieldY = document.getElementById("wrong_field_Y");
 let wrongFieldR = document.getElementById("wrong_field_R");
