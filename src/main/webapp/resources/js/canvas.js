@@ -9,7 +9,8 @@ let height = canvas.height;
 canvas.addEventListener('mousedown', event => clickOnChart(canvas, event));
 
 function drawCanvas() {
-    let valR = $('#R').val() * step;
+    let valR = getR() * step;
+
     drawAXIS()
     drawRectangle(valR)
     drawTriangle(valR)

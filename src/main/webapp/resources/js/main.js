@@ -1,72 +1,47 @@
-let xval;
-let yval;
-let rval;
-$('.input_form_button_r').on('click', function (event) {
-    rval = $(this).val();
-    $(this).addClass('button_r_clicked');
-    $('.input_form_button_r').not(this).removeClass('button_r_clicked');
-    $('.input_form_hidden_r input[type=hidden]').val(rval);
+document.addEventListener("DOMContentLoaded", function () {
+    drawCanvas()
 });
 
+let xVal;
+let yVal;
+let rVal = 3;
+
 function changeX(link, val) {
-    xval = val;
-    $('.input_form_hidden_x input[type=hidden]').val(xval);
+    xVal = val;
+    $('.input_form_hidden_x input[type=hidden]').val(xVal);
 }
+
+function getR() {
+    return rVal;
+}
+
+$('.input_form_control_buttons_button_submit').on('click', function (event) {
+    console.log("y=" + yVal)
+    $('.input_form_hidden_x input[type=hidden]').val(xVal);
+    $('.input_form_hidden_r input[type=hidden]').val(rVal);
+    // wrongFieldX.textContent = ""
+    // wrongFieldY.textContent = ""
+    // wrongFieldR.textContent = ""
+    // if (!(checkX() & checkY())) {
+    //     event.preventDefault();
+    // }
+});
+
+$('.input_form_button_r').on('click', function (event) {
+    rVal = $(this).val();
+    $(this).addClass('button_r_clicked');
+    $('.input_form_button_r').not(this).removeClass('button_r_clicked');
+    $('.input_form_hidden_r input[type=hidden]').val(rVal);
+});
+
 
 let wrongFieldX = document.getElementById("wrong_field_X");
 let wrongFieldY = document.getElementById("wrong_field_Y");
 let wrongFieldR = document.getElementById("wrong_field_R");
 
-function readyForm(e) {
-    wrongFieldX.textContent = ""
-    wrongFieldY.textContent = ""
-    wrongFieldR.textContent = ""
-    if (!(checkX() & checkY())) {
-        e.preventDefault();
-    }
-}
-
 function clear() {
     clearCanvas()
     drawCanvas()
-    return new Promise(function (resolve) {
-            $.get('servlet', {
-                'clean': true
-            }).done(function (data) {
-                    $("#result_table tr:gt(0)").remove();
-                }
-            ).fail(function (err) {
-                alert(err);
-            });
-        }
-    );
-}
-
-function checkX() {
-    let x = document.getElementById("X");
-    if (x.value === "") {
-        wrongFieldX.textContent = "Поле X должно быть заполнено";
-        return false;
-    }
-    x.value = x.value.substring(0, 10).replace(',', '.');
-    if (!(x.value && !isNaN(x.value))) {
-        wrongFieldX.textContent = "X должен быть числом!";
-        return false;
-    }
-    if (!((x.value >= -3) && (x.value <= 5))) {
-        wrongFieldX.textContent = "X должен принадлежать промежутку: (-3; 5)!";
-        return false;
-    }
-    return true;
-}
-
-function checkY() {
-    let valY = $('input[name="y"]:checked').val();
-    if (valY === undefined) {
-        wrongFieldY.textContent = "Выберите одно значение Y";
-        return false;
-    }
-    return true;
 }
 
 
@@ -76,17 +51,17 @@ function clickOnChart(canvas, event) {
     let height = canvas.height;
     let x = (event.clientX - rect.left - width / 2) / step;
     let y = (height / 2 - event.clientY + rect.top) / step;
-    // let x = (event.clientX - rect.x- width / 2) / step;
-    // let y = (height / 2 - event.clientY + rect.y) / step;
-    let r = $("#R").val();
     x = x.toFixed(2).replace(".00", "");
     y = y.toFixed(2).replace(".00", "");
-    if (isValid(x, y, r)) {
-        submit(x, y, r)
+    if (isValid(x, y, rVal)) {
+        xVal = x
+        yVal = y
+        $('.input-form_text_y').val(yVal);
+        $(".submit").click();
     }
-    drawShoot(x, y, r)
+    drawShoot(xVal, yVal, rVal)
 }
 
 function isValid(x, y, r) {
-    return (x >= -3 && x <= 5) && (y >= -3 && y <= 5) && (r >= 1 && r <= 5);
+    return true;
 }
