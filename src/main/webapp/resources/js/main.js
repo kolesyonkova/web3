@@ -19,12 +19,17 @@ $('.input_form_control_buttons_button_submit').on('click', function (event) {
     console.log("y=" + yVal)
     $('.input_form_hidden_x input[type=hidden]').val(xVal);
     $('.input_form_hidden_r input[type=hidden]').val(rVal);
+    drawShoot(xVal, $('.input-form_text_y').val(), rVal)
     // wrongFieldX.textContent = ""
     // wrongFieldY.textContent = ""
     // wrongFieldR.textContent = ""
     // if (!(checkX() & checkY())) {
     //     event.preventDefault();
     // }
+});
+$('.input_form_control_buttons_button_clear').on('click', function (event) {
+    clearCanvas()
+    drawCanvas()
 });
 
 $('.input_form_button_r').on('click', function (event) {
@@ -38,11 +43,6 @@ $('.input_form_button_r').on('click', function (event) {
 let wrongFieldX = document.getElementById("wrong_field_X");
 let wrongFieldY = document.getElementById("wrong_field_Y");
 let wrongFieldR = document.getElementById("wrong_field_R");
-
-function clear() {
-    clearCanvas()
-    drawCanvas()
-}
 
 
 function clickOnChart(canvas, event) {
@@ -59,7 +59,7 @@ function clickOnChart(canvas, event) {
         $('.input-form_text_y').val(yVal);
         $(".submit").click();
     }
-    drawShoot(xVal, yVal, rVal)
+    // drawShoot(xVal, yVal, rVal)
 }
 
 function isValid(x, y, r) {

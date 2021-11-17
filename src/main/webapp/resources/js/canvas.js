@@ -22,7 +22,7 @@ function drawTriangle(valR) {
     context.fillStyle = 'blue';
     context.globalAlpha = 0.6;
     context.beginPath();
-    context.moveTo((width / 2) + valR/2, height / 2);
+    context.moveTo((width / 2) + valR / 2, height / 2);
     context.lineTo(width / 2, (height - valR) / 2);
     context.lineTo(width / 2, height / 2);
     context.fill();
@@ -98,11 +98,20 @@ function clearCanvas() {
 }
 
 function drawPoints() {
-    let Xs = Array.from(document.getElementsByClassName("the_X")).map(v => v.innerHTML);
-    let Ys = Array.from(document.getElementsByClassName("the_Y")).map(v => v.innerHTML);
-    let Rs = Array.from(document.getElementsByClassName("the_R")).map(v => v.innerHTML);
-    for (let i = 0; i < Xs.length; i++) {
-        drawShoot(Xs[i], Ys[i], Rs[i])
+    let rows = [];
+    let headers = $(".result_table th");
+    console.log(headers)
+    $(".result_table tr").each(function (index) {
+        let cells = $(this).find("td");
+        rows[index] = {};
+        cells.each(function (cellIndex) {
+            rows[index][$(headers[cellIndex]).html()] = $(this).html().replace(/\s/g, "");
+            console.log(rows)
+        });
+    });
+    for (let i = 0; i < rows.length; i++) {
+        console.log(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
+        drawShoot(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
     }
 }
 
@@ -129,13 +138,13 @@ function checkArea(x, y, r) {
 }
 
 function checkRectangle(x, y, r) {
-    return x >= 0 && y <= 0 && y >= -r && x <= r / 2;
+    return x <= 0 && y <= 0 && x >= -r && y >= -r / 2;
 }
 
 function checkTriangle(x, y, r) {
-    return y <= (r / 2 + 0.5 * x) && x <= 0 && y >= 0;
+    return x >= 0 && y >= 0 && x + y <= r / 2;
 }
 
 function checkCircle(x, y, r) {
-    return (x * x + y * y) <= r * r && x <= 0 && y <= 0;
+    return x <= 0 && y >= 0 && x * x + y * y <= r / 2;
 }

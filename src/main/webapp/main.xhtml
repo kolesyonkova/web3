@@ -5,7 +5,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="WEB-INF/templates/master.xhtml">
@@ -71,6 +70,7 @@
                                                    type="button" value="5"/>
                                 </li>
                             </ul>
+                            <div id="wrong_field_X" class="wrong"></div>
                         </div>
 
                         <h:panelGroup styleClass="input_form_hidden_x">
@@ -83,6 +83,7 @@
                             <h:inputText styleClass="input-form_text input-form_text_y" id="y"
                                          value="#{exampleBean.newEntry.y}">
                             </h:inputText>
+                            <div id="wrong_field_Y" class="wrong"></div>
                         </div>
 
                         <div>
@@ -110,6 +111,7 @@
                                                      type="button" value="5"/>
                                 </li>
                             </ul>
+                            <div id="wrong_field_R" class="wrong"></div>
                         </div>
 
                         <h:panelGroup styleClass="input_form_hidden_r">
