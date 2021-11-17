@@ -100,17 +100,14 @@ function clearCanvas() {
 function drawPoints() {
     let rows = [];
     let headers = $(".result_table th");
-    console.log(headers)
     $(".result_table tr").each(function (index) {
         let cells = $(this).find("td");
         rows[index] = {};
         cells.each(function (cellIndex) {
             rows[index][$(headers[cellIndex]).html()] = $(this).html().replace(/\s/g, "");
-            console.log(rows)
         });
     });
     for (let i = 0; i < rows.length; i++) {
-        console.log(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
         // drawShoot(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
         drawShoot(rows[i]["X"], rows[i]["Y"], getR())
     }

@@ -20,6 +20,12 @@ div {
     background: coral;
 }
 
+.button_x_clicked {
+    border: 2px solid #a03333;
+    background: #e86b40;
+}
+
+
 .header {
     font-size: 170%;
     font-weight: bold;

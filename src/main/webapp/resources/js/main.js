@@ -1,11 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     $(".r-button3").click();
+    $(".x-button7").click();
     drawCanvas()
 });
 
 let xVal;
 let yVal;
 let rVal;
+
+$('.input_form_button_x').on('click', function (event) {
+    $(this).addClass('button_x_clicked');
+    $('.input_form_button_x').not(this).removeClass('button_x_clicked');
+});
 
 function changeX(link, val) {
     xVal = val;
@@ -18,21 +24,42 @@ function getR() {
 
 $('.input_form_control_buttons_button_submit').on('click', function (event) {
     drawCanvas()
-    console.log("y=" + yVal)
     $('.input_form_hidden_x input[type=hidden]').val(xVal);
     $('.input_form_hidden_r input[type=hidden]').val(rVal);
     drawShoot(xVal, $('.input-form_text_y').val(), rVal)
-    // wrongFieldX.textContent = ""
-    // wrongFieldY.textContent = ""
-    // wrongFieldR.textContent = ""
-    // if (!(checkX() & checkY())) {
-    //     event.preventDefault();
-    // }
+    wrongFieldX.textContent = ""
+    wrongFieldY.textContent = ""
+    wrongFieldR.textContent = ""
+    if (!checkY()) {
+        console.log("ya tyt")
+        event.preventDefault()
+    }
 });
+
+function checkY() {
+    yVal = $('.input-form_text_y').val();
+    console.log("y=" + yVal)
+    if (yVal === "") {
+        wrongFieldY.textContent = "Поле Y должно быть заполнено";
+        return false;
+    }
+    if (!(yVal && !isNaN(yVal))) {
+        wrongFieldY.textContent = "Y должен быть числом!";
+        return false;
+    }
+    if (!((yVal >= -5) && (yVal <= 5))) {
+        wrongFieldY.textContent = "Y должен принадлежать промежутку: (-5; 5)!";
+        return false;
+    }
+    return true;
+}
+
+
 $('.input_form_control_buttons_button_clear').on('click', function (event) {
     clear()
 });
-function clear(){
+
+function clear() {
     clearCanvas()
     drawCanvas()
 }
@@ -65,9 +92,8 @@ function clickOnChart(canvas, event) {
         $('.input-form_text_y').val(yVal);
         $(".submit").click();
     }
-    // drawShoot(xVal, yVal, rVal)
 }
 
 function isValid(x, y, r) {
-    return true;
+    return (x >= -3 && x <= 5) && (y >= -5 && y <= 5) && (r >= 1 && r <= 5);
 }
