@@ -1,13 +1,9 @@
 
 import lombok.Data;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
-@ApplicationScoped
 @Data
 public class EntryBean {
 
@@ -21,11 +17,9 @@ public class EntryBean {
     }
 
     public void addEntry() {
-        System.out.println("Я в добавлениие");
         System.out.println(newEntry.toString());
         System.out.println(isValidData(newEntry));
         if (isValidData(newEntry)) {
-            System.out.println("Валидно всё");
             entries.add(newEntry);
         }
         newEntry = new Entry();
@@ -42,11 +36,9 @@ public class EntryBean {
                     return true;
                 } else return false;
             } else {
-                System.out.println("не валидны в else");
                 return false;
             }
         } catch (Exception e) {
-            System.out.println("не валидны(ошибка)");
             return false;
         }
     }
