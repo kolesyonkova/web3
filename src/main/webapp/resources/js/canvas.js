@@ -22,7 +22,7 @@ function drawTriangle(valR) {
     context.fillStyle = 'blue';
     context.globalAlpha = 0.6;
     context.beginPath();
-    context.moveTo((width / 2) - valR, height / 2);
+    context.moveTo((width / 2) + valR/2, height / 2);
     context.lineTo(width / 2, (height - valR) / 2);
     context.lineTo(width / 2, height / 2);
     context.fill();
@@ -33,7 +33,7 @@ function drawCircle(valR) {
     context.fillStyle = 'blue';
     context.strokeStyle = 'blue';
     context.globalAlpha = 0.6;
-    context.arc(width / 2, height / 2, valR, Math.PI / 2, Math.PI);
+    context.arc(width / 2, height / 2, valR / 2, Math.PI, 3 * Math.PI / 2);
     context.lineTo(width / 2, height / 2)
     context.fill();
     context.stroke();
@@ -44,7 +44,7 @@ function drawRectangle(valR) {
     context.strokeStyle = 'blue';
     context.globalAlpha = 0.6;
     context.beginPath();
-    context.fillRect(width / 2, height / 2, valR / 2, valR);
+    context.fillRect(width / 2, height / 2, -valR, valR / 2);
 
 }
 
