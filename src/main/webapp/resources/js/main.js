@@ -43,6 +43,7 @@ function checkY() {
         wrongFieldY.textContent = "Поле Y должно быть заполнено";
         return false;
     }
+    yVal = yVal.replace(",", ".")
     if (!(yVal && !isNaN(yVal))) {
         wrongFieldY.textContent = "Y должен быть числом!";
         return false;
@@ -55,9 +56,9 @@ function checkY() {
 }
 
 
-$('.input_form_control_buttons_button_clear').on('click', function (event) {
-    clear()
-});
+// $('.input_form_control_buttons_button_clear').on('click', function (event) {
+//     clear()
+// });
 
 function clear() {
     clearCanvas()
