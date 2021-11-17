@@ -111,7 +111,8 @@ function drawPoints() {
     });
     for (let i = 0; i < rows.length; i++) {
         console.log(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
-        drawShoot(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
+        // drawShoot(rows[i]["X"], rows[i]["Y"], rows[i]["R"])
+        drawShoot(rows[i]["X"], rows[i]["Y"], getR())
     }
 }
 
@@ -142,9 +143,9 @@ function checkRectangle(x, y, r) {
 }
 
 function checkTriangle(x, y, r) {
-    return x >= 0 && y >= 0 && x + y <= r / 2;
+    return x >= 0 && y >= 0 && y <= -x + r / 2 ;
 }
 
 function checkCircle(x, y, r) {
-    return x <= 0 && y >= 0 && x * x + y * y <= r / 2;
+    return x <= 0 && y >= 0 && x * x + y * y <= (r / 2) * (r / 2);
 }
