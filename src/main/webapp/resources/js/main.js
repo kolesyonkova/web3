@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    $(".r-button3").click();
     drawCanvas()
 });
 
 let xVal;
 let yVal;
-let rVal = 3;
+let rVal;
 
 function changeX(link, val) {
     xVal = val;
@@ -16,6 +17,7 @@ function getR() {
 }
 
 $('.input_form_control_buttons_button_submit').on('click', function (event) {
+    drawCanvas()
     console.log("y=" + yVal)
     $('.input_form_hidden_x input[type=hidden]').val(xVal);
     $('.input_form_hidden_r input[type=hidden]').val(rVal);
@@ -28,12 +30,16 @@ $('.input_form_control_buttons_button_submit').on('click', function (event) {
     // }
 });
 $('.input_form_control_buttons_button_clear').on('click', function (event) {
+    clear()
+});
+function clear(){
     clearCanvas()
     drawCanvas()
-});
+}
 
 $('.input_form_button_r').on('click', function (event) {
     rVal = $(this).val();
+    clear()
     $(this).addClass('button_r_clicked');
     $('.input_form_button_r').not(this).removeClass('button_r_clicked');
     $('.input_form_hidden_r input[type=hidden]').val(rVal);
