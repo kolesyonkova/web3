@@ -23,7 +23,7 @@
 
     <managed-bean>
         <managed-bean-name>entryBean</managed-bean-name>
-        <managed-bean-class>EntryBean</managed-bean-class>
+        <managed-bean-class>test.EntryBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 </faces-config>
