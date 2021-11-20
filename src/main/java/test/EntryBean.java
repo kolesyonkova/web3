@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static test.Validator.isValidData;
 
@@ -15,7 +16,7 @@ public class EntryBean implements Serializable {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EntityTransaction transaction;
-
+    private ReentrantLock lock = new ReentrantLock();
     private Entry newEntry;
 
     private List<Entry> entries;
@@ -29,6 +30,7 @@ public class EntryBean implements Serializable {
     }
 
     private void loadEntries() {
+        lock.lock();
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
@@ -40,9 +42,11 @@ public class EntryBean implements Serializable {
             }
             throw exception;
         }
+        lock.unlock();
     }
 
     public void addEntry() {
+        lock.lock();
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
@@ -58,6 +62,7 @@ public class EntryBean implements Serializable {
             }
             throw exception;
         }
+        lock.unlock();
     }
 
     private void connection() {
@@ -66,6 +71,7 @@ public class EntryBean implements Serializable {
     }
 
     public void clearEntry() {
+        lock.lock();
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
@@ -78,5 +84,6 @@ public class EntryBean implements Serializable {
             }
             throw exception;
         }
+        lock.unlock();
     }
 }
