@@ -3,9 +3,6 @@ package test;
 import lombok.Data;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.persistence.EntityManager;
 import javax.transaction.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +12,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import static test.Validator.isValidData;
 
 @Data
-//@ManagedBean(name="pointsBean", eager = true)
-//@ApplicationScoped
 public class PointsBean implements Serializable {
     private DataBaseManager dataBaseManager = new DataBaseManager();
     private ReentrantLock lock = new ReentrantLock();
