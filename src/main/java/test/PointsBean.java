@@ -3,6 +3,8 @@ package test;
 import lombok.Data;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.transaction.*;
 import java.io.Serializable;
@@ -13,24 +15,19 @@ import java.util.concurrent.locks.ReentrantLock;
 import static test.Validator.isValidData;
 
 @Data
+//@ManagedBean(name="pointsBean", eager = true)
+//@ApplicationScoped
 public class PointsBean implements Serializable {
-    private EntityManager entityManager;
-    private DataBase dataBase=new DataBase();
+    private DataBaseManager dataBaseManager = new DataBaseManager();
     private ReentrantLock lock = new ReentrantLock();
-    private Point newPoint;
+    private Point newPoint = new Point();
 
-    private List<Point> entries;
-
-    public PointsBean() {
-        newPoint = new Point();
-        entries = new ArrayList<>();
-        loadEntries();
-    }
+    private List<Point> entries = new ArrayList<>();
 
     @PostConstruct
     private void loadEntries() {
         lock.lock();
-        entries = dataBase.loadEntries();
+        entries = dataBaseManager.loadEntries();
         lock.unlock();
     }
 
@@ -38,7 +35,7 @@ public class PointsBean implements Serializable {
         lock.lock();
         if (isValidData(newPoint)) {
             try {
-                dataBase.addEntryToDB(newPoint);
+                dataBaseManager.addEntryToDB(newPoint);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -51,7 +48,7 @@ public class PointsBean implements Serializable {
     public void clearEntry() {
         lock.lock();
         try {
-            dataBase.clearDB();
+            dataBaseManager.clearDB();
         } catch (SystemException | NotSupportedException | HeuristicRollbackException | HeuristicMixedException | RollbackException e) {
             e.printStackTrace();
         }

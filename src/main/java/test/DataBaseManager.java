@@ -1,13 +1,17 @@
 package test;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.*;
 import java.util.List;
 
-public class DataBase {
-    private static final String PERSISTENCE_UNIT_NAME = "data";
+//@ManagedBean(name = "dataBaseManager", eager = true)
+//@ApplicationScoped
+public class DataBaseManager {
+    private static final String PERSISTENCE_UNIT_NAME = "postgres";
 
     @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManager entityManager;

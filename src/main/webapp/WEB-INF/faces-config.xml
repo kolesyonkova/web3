@@ -8,14 +8,14 @@
         <managed-bean-class>test.PointsBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
         <managed-property>
-            <property-name>dataBase</property-name>
-            <property-class>test.DataBase</property-class>
+            <property-name>dataBaseManager</property-name>
+            <property-class>test.DataBaseManager</property-class>
             <value>#{dataBase}</value>
         </managed-property>
     </managed-bean>
     <managed-bean>
         <managed-bean-name>dataBase</managed-bean-name>
-        <managed-bean-class>test.DataBase</managed-bean-class>
+        <managed-bean-class>test.DataBaseManager</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 
