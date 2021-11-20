@@ -19,15 +19,15 @@ public class DataBaseManager {
         return entityManager.createQuery("SELECT e FROM test.Point e").getResultList();
     }
 
-    public void addEntryToDB(Point point) throws Exception {
+    public synchronized void addEntryToDB(Point point) throws Exception {
         userTransaction.begin();
         entityManager.persist(point);
         userTransaction.commit();
     }
 
-    public void clearDB() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
+    public synchronized void clearDB() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
         userTransaction.begin();
-        entityManager.createQuery("DELETE from test.Point").executeUpdate();
+        entityManager.createQuery("delete from test.Point").executeUpdate();
         userTransaction.commit();
     }
 }
