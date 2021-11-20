@@ -1,14 +1,14 @@
 package test;
 
 public abstract class Validator {
-    public static boolean isValidData(Entry entry) {
+    public static boolean isValidData(Point point) {
         try {
-            if (entry.getX() != null && entry.getY() != null && entry.getR() != null) {
-                double x = Double.parseDouble(entry.getX().replace(',', '.'));
-                double y = Double.parseDouble(entry.getY().replace(',', '.'));
-                double r = Double.parseDouble(entry.getR().replace(',', '.'));
+            if (point.getX() != null && point.getY() != null && point.getR() != null) {
+                double x = Double.parseDouble(point.getX().replace(',', '.'));
+                double y = Double.parseDouble(point.getY().replace(',', '.'));
+                double r = Double.parseDouble(point.getR().replace(',', '.'));
                 if (isValid(x, y, r)) {
-                    entry.setHitResult(checkArea(x, y, r) ? "Да" : "Нет");
+                    point.setHitResult(checkArea(x, y, r) ? "Да" : "Нет");
                     return true;
                 } else return false;
             } else {

@@ -1,14 +1,13 @@
 package test;
 
-import javax.persistence.*;
-
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
 @Entity
-public class Entry implements Serializable {
+public class Point implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

@@ -3,6 +3,23 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
+    <managed-bean>
+        <managed-bean-name>pointsBean</managed-bean-name>
+        <managed-bean-class>test.PointsBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>dataBase</property-name>
+            <property-class>test.DataBase</property-class>
+            <value>#{dataBase}</value>
+        </managed-property>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>dataBase</managed-bean-name>
+        <managed-bean-class>test.DataBase</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -21,9 +38,4 @@
         </navigation-case>
     </navigation-rule>
 
-    <managed-bean>
-        <managed-bean-name>entryBean</managed-bean-name>
-        <managed-bean-class>test.EntryBean</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
-    </managed-bean>
 </faces-config>

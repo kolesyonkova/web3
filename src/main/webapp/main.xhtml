@@ -74,14 +74,14 @@
                         </div>
 
                         <h:panelGroup styleClass="input_form_hidden_x">
-                            <h:inputHidden value="#{entryBean.newEntry.x}">
+                            <h:inputHidden value="#{pointsBean.newPoint.x}">
                             </h:inputHidden>
                         </h:panelGroup>
 
                         <div>
                             <h:outputLabel styleClass="input-form_label_y" for="y" value="Y"/>
                             <h:inputText styleClass="input-form_text input-form_text_y" id="y"
-                                         value="#{entryBean.newEntry.y}">
+                                         value="#{pointsBean.newPoint.y}">
                             </h:inputText>
                             <div id="wrong_field_Y" class="wrong"></div>
                         </div>
@@ -116,18 +116,18 @@
                         </div>
 
                         <h:panelGroup styleClass="input_form_hidden_r">
-                            <h:inputHidden value="#{entryBean.newEntry.r}">
+                            <h:inputHidden value="#{pointsBean.newPoint.r}">
                             </h:inputHidden>
                         </h:panelGroup>
                         <div class="input_form_buttons_container">
                             <h:commandButton value="Отправить"
                                              styleClass="submit input_form_control_buttons_button_submit"
-                                             action="#{entryBean.addEntry()}">
+                                             action="#{pointsBean.addEntry()}">
                                 <f:ajax execute="newPointForm" render="pointTable"/>
                             </h:commandButton>
                             <h:commandButton
                                     styleClass="input_form_control_buttons_button_clear"
-                                    value="Очистить" action="#{entryBean.clearEntry()}" immediate="true"
+                                    value="Очистить" action="#{pointsBean.clearEntry()}" immediate="true"
                                     onclick="window.location.reload()">
                                 <f:ajax execute="newPointForm" render="pointTable"/>
                             </h:commandButton>
@@ -139,22 +139,22 @@
             <section>
                 <div class="result-table_container">
                     <h:panelGroup id="pointTable">
-                        <h:dataTable styleClass="result_table" value="#{entryBean.entries}" var="entry">
+                        <h:dataTable styleClass="result_table" value="#{pointsBean.entries}" var="point">
                             <h:column headerClass="variables the_X">
                                 <f:facet name="header">X</f:facet>
-                                <h:outputText value="#{entry.x}"/>
+                                <h:outputText value="#{point.x}"/>
                             </h:column>
                             <h:column headerClass="variables the_Y">
                                 <f:facet name="header">Y</f:facet>
-                                <h:outputText value="#{entry.y}"/>
+                                <h:outputText value="#{point.y}"/>
                             </h:column>
                             <h:column headerClass="variables the_R">
                                 <f:facet name="header">R</f:facet>
-                                <h:outputText value="#{entry.r}"/>
+                                <h:outputText value="#{point.r}"/>
                             </h:column>
                             <h:column headerClass="variables">
                                 <f:facet name="header">Результат</f:facet>
-                                <h:outputText value="#{entry.hitResult}"/>
+                                <h:outputText value="#{point.hitResult}"/>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
