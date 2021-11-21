@@ -12,7 +12,7 @@ import static test.Validator.isValidData;
 
 @Data
 public class PointsBean implements Serializable {
-    private DataBaseManager dataBaseManager = new DataBaseManager();
+    private DataBaseManager dataBaseManager;
     private Point newPoint = new Point();
 
     private List<Point> entries = new ArrayList<>();
@@ -36,7 +36,10 @@ public class PointsBean implements Serializable {
 
     public void clearEntry() {
         try {
-            dataBaseManager.clearDB();
+            for (Point entry : entries) {
+                dataBaseManager.clearDB(entry);
+            }
+            entries.clear();
         } catch (SystemException | NotSupportedException | HeuristicRollbackException | HeuristicMixedException | RollbackException e) {
             e.printStackTrace();
         }
