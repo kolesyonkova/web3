@@ -36,8 +36,8 @@ public class PointsBean implements Serializable {
 
     public void clearEntry() {
         try {
-            for (Point entry : entries) {
-                dataBaseManager.clearDB(entry);
+            for (Point p:entries) {
+                dataBaseManager.clearDB(p);
             }
             entries.clear();
         } catch (SystemException | NotSupportedException | HeuristicRollbackException | HeuristicMixedException | RollbackException e) {

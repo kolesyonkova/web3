@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@Table(name = "point")
 public class Point implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

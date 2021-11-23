@@ -27,7 +27,7 @@ public class DataBaseManager {
 
     public synchronized void clearDB(Point point) throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
         userTransaction.begin();
-        entityManager.remove(point);
+        entityManager.remove(entityManager.merge(point));
         userTransaction.commit();
     }
 }
